@@ -1,50 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title><%= locals.title %></title>
 </head>
 
 <body>
   <h1>
     <%= locals.title %>
   </h1>
-  <% if (locals.title==="Sign Up" ) { %>
-    <form class="" action="" method="POST">
-      <div class="">
+
+  <% if (locals.title === "Sign Up" && !(locals.user)) { %>
+    <form action="" method="POST">
+      <div>
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="fname">
       </div>
-      <div class="">
+      <div>
         <label for="last_name">Last Name</label>
         <input type="text" id="last_name" name="lname">
       </div>
-      <div class="">
+      <div>
         <label for="username">Username</label>
         <input type="text" id="username" name="username">
       </div>
-      <div class="">
+      <div>
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password">
       </div>
       <button type="submit">Sign Up</button>
     </form>
-    <% } else { %>
-      <form class="" action="" method="POST">
-        <div class="">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username">
-        </div>
-        <div class="">
-          <label for="pw">Password</label>
-          <input type="password" id="pw" name="password">
-        </div>
-        <button type="submit">Sign In</button>
-
-      </form>
-      <% } %>
+  <% } else if (locals.title === "Sign In" && !(locals.user)) { %>
+    <form action="" method="POST">
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+      </div>
+      <div>
+        <label for="pw">Password</label>
+        <input type="password" id="pw" name="password">
+      </div>
+      <button type="submit">Sign In</button>
+    </form>
+  <% } else { %>
+    <h1>Hello, <%= locals.user.username %>.</h1>
+    <h2>You're logged in</h2>
+    <a href="/log-out">LOG OUT</a>
+  <% } %>
 </body>
 
 </html>
+

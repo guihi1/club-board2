@@ -3,6 +3,8 @@ import router from './routes/router.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
+import passport from 'passport';
+import configurePassport from './passport-config.js';
 
 const app = Express();
 const port = 3000;
@@ -16,6 +18,10 @@ app.set('view engine', 'ejs');
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: false }));
 app.use(Express.urlencoded({ extended: true })); // For parsing form data
 app.use(Express.json()); // For parsing JSON bodies
+app.use(passport.initialize());
+app.use(passport.session());
+
+configurePassport(passport);
 
 app.use('/', router);
 
