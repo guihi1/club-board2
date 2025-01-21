@@ -1,5 +1,6 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 import pool from './db/pool.js';
+import bcrypt from 'bcrypt';
 
 function configurePassport(passport) {
   passport.use(
@@ -14,9 +15,12 @@ function configurePassport(passport) {
         if (!user) {
           return done(null, false, { message: 'Incorrect username' });
         }
-        if (user.password !== password) {
+
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
           return done(null, false, { message: 'Incorrect password' });
         }
+
         return done(null, user);
       } catch (err) {
         return done(err);

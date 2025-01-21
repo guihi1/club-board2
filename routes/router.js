@@ -13,6 +13,12 @@ router.post('/sign-in', userController.signInPost);
 
 router.get('/sign-up', userController.signUp);
 
+router.post(
+  '/sign-up',
+  userController.validateSignUp,
+  userController.signUpPost,
+);
+
 router.get('/log-out', userController.logOut);
 
 export default router;
