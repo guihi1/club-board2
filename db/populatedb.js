@@ -8,7 +8,7 @@ const { Client } = pg;
 const SQL = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR (255),
+  username VARCHAR (255) UNIQUE,
   first_name VARCHAR (255),
   last_name VARCHAR (255),
   admin BOOLEAN DEFAULT FALSE,
