@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= locals.title %>
+  </title>
+</head>
+
+<body>
+  <h1>
+    Hello,
+    <%= locals.user ? user.username : 'visitor' %>
+  </h1>
+  <% if (locals.posts.length==0) { %>
+    <h2>No Posts to show</h2>
+    <% } else { %>
+      <h2>Posts</h2>
+      <ul>
+        <% locals.posts.forEach(post=> { %>
+          <li>
+            <h3>
+              <%= post.title %>
+            </h3>
+            <p>
+              <%= post.body %>
+            </p>
+            <% if (locals.user && locals.user.club) { %>
+              <p>
+                <%= post.username %>
+              </p>
+              <p>
+                <%= post.created_at %>
+              </p>
+              <% } else { %>
+                <p> Anonymous </p>
+                <p> Creation time: hidden </p>
+                <% } %>
+          </li>
+          <% }); %>
+      </ul>
+      <% } %>
+        <% if (locals.user) { %>
+          <a href="/posts/new">Write Post</a>
+          <a href="/log-out">Logout</a>
+          <% if (!user.club) { %>
+            <a href="/club">Join Club</a>
+            <% } %>
+              <% } else { %>
+                <a href="/sign-in">Login</a>
+                <a href="/sign-up">Sign Up</a>
+                <% } %>
+</body>
+
+</html>

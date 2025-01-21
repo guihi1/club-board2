@@ -1,11 +1,14 @@
 import express from 'express';
 import * as userController from '../controllers/userController.js';
+import * as postController from '../controllers/postController.js';
 
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-  res.send(`${req.user ? `Hello, ${req.user.username}!` : 'Hello, world!'}`);
+  res.redirect('/posts');
 });
+
+router.get('/posts', postController.postList);
 
 router.get('/sign-in', userController.signIn);
 
