@@ -10,6 +10,14 @@ router.get('/', async (req, res, next) => {
 
 router.get('/posts', postController.postList);
 
+router.get('/posts/new', postController.createPost);
+
+router.post(
+  '/posts/new',
+  postController.validatePost,
+  postController.createPostPost,
+);
+
 router.get('/sign-in', userController.signIn);
 
 router.post('/sign-in', userController.signInPost);

@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= locals.title %>
+  </title>
+</head>
+
+<body>
+  <% if (locals.user) { %>
+    <h1>Welcome, <%= locals.user.username %></h1>
+    <h2>Create a New Post</h2>
+    <form action="/posts/new" method="POST">
+      <div>
+        <label for="title">Post Title</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      <div>
+        <label for="body">Post Body</label>
+        <textarea id="body" name="body" rows="5" required></textarea>
+      </div>
+      <button type="submit">Create Post</button>
+    </form>
+  <% } else { %>
+    <a href="/sign-in">Login</a>
+    <a href="/sign-up">Sign Up</a>
+  <% } %>
+</body>
+
+</html>
+
