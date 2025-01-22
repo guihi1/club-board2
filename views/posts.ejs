@@ -38,6 +38,11 @@
                 <p> Anonymous </p>
                 <p> Creation time: hidden </p>
                 <% } %>
+                  <% if (locals.user && locals.user.admin) { %>
+                    <form action="/posts/<%= post.id %>/delete" method="POST">
+                      <button type="submit">Delete</button>
+                    </form>
+                    <% } %>
           </li>
           <% }); %>
       </ul>

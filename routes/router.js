@@ -18,6 +18,8 @@ router.post(
   postController.createPostPost,
 );
 
+router.post('/posts/:id/delete', postController.deletePost);
+
 router.get('/sign-in', userController.signIn);
 
 router.post('/sign-in', userController.signInPost);

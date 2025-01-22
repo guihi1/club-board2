@@ -3,7 +3,7 @@ import { body, validationResult } from 'express-validator';
 
 const postList = async (req, res) => {
   const posts = await pool.query(
-    'SELECT title, body, created_at, username, club FROM posts INNER JOIN users ON posts.user_id = users.id',
+    'SELECT posts.id, title, body, created_at, username FROM posts INNER JOIN users ON posts.user_id = users.id',
   );
   res.render('posts', { title: 'Posts', user: req.user, posts: posts.rows });
 };
@@ -40,4 +40,9 @@ const createPostPost = async (req, res) => {
   res.redirect('/posts');
 };
 
-export { postList, validatePost, createPost, createPostPost };
+const deletePost = async (req, res) => {
+  await pool.query('DELETE FROM posts WHERE id = $1', [req.params.id]);
+  res.redirect('/posts');
+};
+
+export { postList, validatePost, createPost, createPostPost, deletePost };
