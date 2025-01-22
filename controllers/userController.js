@@ -81,7 +81,7 @@ const signIn = async (req, res) => {
 };
 
 const signInPost = passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/posts',
   failureRedirect: '/sign-in',
 });
 
