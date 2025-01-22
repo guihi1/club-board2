@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= locals.title %>
+  </title>
+</head>
+
+<body>
+  <% if (locals.user && locals.user.club) { %>
+    <p>
+      You're already a club member.
+    </p>
+    <a href="/posts">Back to Posts</a>
+    <% } else { %>
+      <h1>Join the Club</h1>
+      <form action="/club" method="POST">
+        <div>
+          <label for="club_passcode">Enter Club Password:</label>
+          <input type="password" id="club_passcode" name="club_passcode" placeholder="Club Password" required>
+        </div>
+        <button type="submit">Join Club</button>
+      </form>
+
+      <% if (locals.error) { %>
+        <p style="color: red;">
+          <%= locals.error %>
+        </p>
+        <% } %>
+          <% } %>
+</body>
+
+</html>

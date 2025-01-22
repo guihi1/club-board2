@@ -20,6 +20,10 @@ router.post(
 
 router.post('/posts/:id/delete', postController.deletePost);
 
+router.get('/club', userController.clubGet);
+
+router.post('/club', userController.clubPost);
+
 router.get('/sign-in', userController.signIn);
 
 router.post('/sign-in', userController.signInPost);

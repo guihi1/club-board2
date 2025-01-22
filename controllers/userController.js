@@ -94,4 +94,34 @@ const logOut = (req, res, next) => {
   });
 };
 
-export { signUp, signUpPost, signIn, signInPost, logOut, validateSignUp };
+const clubGet = (req, res) => {
+  res.render('club_form', { title: 'Join Club', user: req.user });
+};
+
+const clubPost = async (req, res) => {
+  const { club_passcode } = req.body;
+
+  if (club_passcode !== clubSecret) {
+    return res.render('club_form', {
+      title: 'Join Club',
+      error: 'Invalid club passcode',
+    });
+  }
+
+  const user_id = req.user.id;
+
+  await pool.query('UPDATE users SET club = true WHERE id = $1', [user_id]);
+
+  res.redirect('/posts');
+};
+
+export {
+  signUp,
+  signUpPost,
+  signIn,
+  signInPost,
+  logOut,
+  validateSignUp,
+  clubGet,
+  clubPost,
+};
