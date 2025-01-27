@@ -5,9 +5,11 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import passport from 'passport';
 import configurePassport from './passport-config.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = Express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // view engine setup
 const __filename = fileURLToPath(import.meta.url);
